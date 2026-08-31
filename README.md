@@ -37,7 +37,7 @@ http://localhost:9090
 
 # Postman test
 
-@ 1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
+## 1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
 
 <img width="1105" height="967" alt="image" src="https://github.com/user-attachments/assets/7e64b723-38df-4a5c-af89-1bb28b6e5446" />
 
@@ -47,14 +47,14 @@ http://localhost:9090
 
 <img width="1095" height="726" alt="image" src="https://github.com/user-attachments/assets/313a8e00-97a0-45fa-852d-218d20ef6dc3" />
 
-2. GET /api/jobs/{id} - Get job details - Return the job details. Return 404 or a proper error response if the job does not exist.
+## 2. GET /api/jobs/{id} - Get job details - Return the job details. Return 404 or a proper error response if the job does not exist.
 
 <img width="2202" height="1656" alt="image" src="https://github.com/user-attachments/assets/33fdc7b3-18d7-412e-ab28-517a9a01ccdd" />
 
 
 <img width="2208" height="1503" alt="image" src="https://github.com/user-attachments/assets/4fbdeb2c-ed39-4b6e-b5fc-f33c38d274a7" />
 
-3. GET /api/jobs?status=PENDING&page=0&size=20 - List jobs - Support filtering by status and pagination.
+## 3. GET /api/jobs?status=PENDING&page=0&size=20 - List jobs - Support filtering by status and pagination.
 
 <img width="2196" height="1842" alt="image" src="https://github.com/user-attachments/assets/3f8da8be-9a83-4516-ad22-ebf65ddd7cf7" />
 
@@ -64,4 +64,4 @@ http://localhost:9090
 
 
 
-4. 
+## 4. 
