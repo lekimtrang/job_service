@@ -4,11 +4,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import proj.Job;
 import proj.JobApplication;
-import proj.JobRepository;
-import proj.JobService;
-import proj.JobStatus;
+import proj.model.Job;
+import proj.model.JobStatus;
+import proj.repository.JobRepository;
+import proj.service.JobService;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.ExecutorService;

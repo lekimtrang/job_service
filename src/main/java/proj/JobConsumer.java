@@ -1,6 +1,10 @@
 package proj;
 
 import lombok.RequiredArgsConstructor;
+import proj.config.RabbitMQConfig;
+import proj.model.Job;
+import proj.repository.JobRepository;
+import proj.service.JobService;
 
 import java.util.Optional;
 

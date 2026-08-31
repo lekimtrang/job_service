@@ -1,4 +1,4 @@
-package proj;
+package proj.exception;
 
 import java.time.LocalDateTime;
 import java.util.List;

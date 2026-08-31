@@ -1,7 +1,11 @@
-package proj;
+package proj.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import proj.dto.JobRequest;
+import proj.model.Job;
+import proj.model.JobStatus;
+import proj.service.JobService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

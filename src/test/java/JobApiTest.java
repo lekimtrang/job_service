@@ -1,10 +1,10 @@
 import com.fasterxml.jackson.databind.ObjectMapper;
 
-import proj.Job;
 import proj.JobApplication;
-import proj.JobRepository;
-import proj.JobRequest;
-import proj.JobStatus;
+import proj.dto.JobRequest;
+import proj.model.Job;
+import proj.model.JobStatus;
+import proj.repository.JobRepository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

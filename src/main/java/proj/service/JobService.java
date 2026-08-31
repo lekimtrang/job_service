@@ -1,7 +1,11 @@
-package proj;
+package proj.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import proj.config.RabbitMQConfig;
+import proj.model.Job;
+import proj.model.JobStatus;
+import proj.repository.JobRepository;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;

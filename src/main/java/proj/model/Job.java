@@ -1,4 +1,4 @@
-package proj;
+package proj.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
