@@ -133,4 +133,12 @@ Partial Functional Indexes: Because active states like PENDING and PROCESSING co
 CREATE INDEX idx_jobs_pending_partial ON jobs (created_at DESC) 
 WHERE status IN ('PENDING', 'PROCESSING');
 
+Modify query string
+
+SELECT * FROM jobs 
+WHERE status = 'PENDING' AND id < :last_seen_id 
+ORDER BY id DESC LIMIT 20;
+
+
+
 
