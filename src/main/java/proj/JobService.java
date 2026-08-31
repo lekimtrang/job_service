@@ -35,11 +35,14 @@ public class JobService {
 
     @Transactional
     public Long createJob(String type, String payload) {
-        Job job = new Job();
-        job.setType(type);
-        job.setPayload(payload);
-        job.setStatus(JobStatus.PENDING);
-        job.setCreatedAt(LocalDateTime.now());
+        Job job = Job.builder()
+        		.type(type)
+                .payload(payload)
+                .status(JobStatus.PENDING)
+                .retryCount(0)
+                .createdAt(LocalDateTime.now())
+                .statusFlow(JobStatus.PENDING.toString())
+                .build();
         Job savedJob = jobRepository.save(job);
         
         rabbitTemplate.convertAndSend(RabbitMQConfig.JOB_QUEUE, savedJob.getId().toString());
@@ -78,6 +81,7 @@ public class JobService {
         	return;
         }
         job.setStatus(JobStatus.PROCESSING);
+        job.setStatusFlow(job.getStatusFlow() + "->" + JobStatus.PROCESSING.toString());
         job.setUpdateddAt(LocalDateTime.now());
         jobRepository.saveAndFlush(job);
         try {
@@ -88,6 +92,7 @@ public class JobService {
 
             // Success Execution Path
             job.setStatus(JobStatus.COMPLETED);
+            job.setStatusFlow(job.getStatusFlow() + "->" + JobStatus.COMPLETED.toString());
             job.setUpdateddAt(LocalDateTime.now());
             job.setErrorMessage(null);
             jobRepository.save(job);
@@ -105,10 +110,12 @@ public class JobService {
 
         if (currentRetries >= MAX_RETRIES) {
             job.setStatus(JobStatus.FAILED);
+            job.setStatusFlow(job.getStatusFlow() + "->" + JobStatus.FAILED.toString());
             job.setUpdateddAt(LocalDateTime.now());
             jobRepository.save(job);
         } else {
             job.setStatus(JobStatus.PENDING); // Mark back to pending so it can be picked up safely
+            job.setStatusFlow(job.getStatusFlow() + "->" + JobStatus.PENDING.toString());
             job.setUpdateddAt(LocalDateTime.now());
             jobRepository.save(job);
             

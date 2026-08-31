@@ -29,12 +29,13 @@ public class Job {
     @Enumerated(EnumType.STRING)
     private JobStatus status;
     private String type;
-    private int retryCount = 0;
+    private int retryCount;
     private String errorMessage;
     @CreationTimestamp
     private LocalDateTime createdAt;
     @UpdateTimestamp
     private LocalDateTime updateddAt;
+    private String statusFlow;
 }
 
 
