@@ -52,5 +52,7 @@ http://localhost:9090
 
 <img width="2232" height="1869" alt="image" src="https://github.com/user-attachments/assets/6a811e49-74ce-479a-9174-0fa8dea98ace" />
 
+<img width="2196" height="1842" alt="image" src="https://github.com/user-attachments/assets/3f8da8be-9a83-4516-ad22-ebf65ddd7cf7" />
+
 
 4. 
