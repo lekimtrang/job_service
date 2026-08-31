@@ -19,9 +19,14 @@ ________________________________________
 
 # Installation 
 Docker Desktop
+
 rabbitmq-server-4.3.5
+
 postgresql-17.11-1
+
 Erlang 29.0.5
+
 docker run --name my-redis -p 6379:6379 -d redis
+
 
 
