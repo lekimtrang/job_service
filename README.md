@@ -61,7 +61,10 @@ http://localhost:9090
 
 <img width="2232" height="1869" alt="image" src="https://github.com/user-attachments/assets/6a811e49-74ce-479a-9174-0fa8dea98ace" />
 
-## 4. 
+## 4. POST /api/jobs/process - Process pending jobs - Pick pending jobs, process them, update status, retry failures, and protect against duplicate concurrent processing.
+
+<img width="2184" height="1362" alt="image" src="https://github.com/user-attachments/assets/afdd6d60-68bf-49e6-b8a1-c724862cac14" />
+
 
 ## 5 Concurrency
 
