@@ -48,4 +48,9 @@ http://localhost:9090
 
 <img width="2208" height="1503" alt="image" src="https://github.com/user-attachments/assets/4fbdeb2c-ed39-4b6e-b5fc-f33c38d274a7" />
 
-3. 
+3. GET /api/jobs?status=PENDING&page=0&size=20 - List jobs - Support filtering by status and pagination.
+
+<img width="2232" height="1869" alt="image" src="https://github.com/user-attachments/assets/6a811e49-74ce-479a-9174-0fa8dea98ace" />
+
+
+4. 
