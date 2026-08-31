@@ -112,3 +112,25 @@ src/main/java/proj/
 
 <img width="2775" height="1632" alt="image" src="https://github.com/user-attachments/assets/ab740fcb-e6cc-46a2-b9b2-e145a2da2a59" />
 
+### QUESTION B: Query Optimization for 50M Records
+
+% Issue: 
+
+Missing Index: The database executes an aggressive Sequential Scan over millions of dead historical variables just to filter out sparse PENDING states.
+
+The High Offset Trap: When requesting standard offsets deep into an execution index, Postgres must sequentially load every record up to that point just to discard them (e.g., parsing pages size=20, page=10000).
+
+% Investigation:
+
+Run a comprehensive database analysis check using EXPLAIN ANALYZE:
+
+EXPLAIN ANALYZE SELECT * FROM jobs WHERE status = 'PENDING' ORDER BY created_at DESC LIMIT 20 OFFSET 0;
+
+% Solution:
+
+Partial Functional Indexes: Because active states like PENDING and PROCESSING consume only a tiny sliver of a 50M table compared to COMPLETED, build a high-performance Partial Index:
+
+CREATE INDEX idx_jobs_pending_partial ON jobs (created_at DESC) 
+WHERE status IN ('PENDING', 'PROCESSING');
+
+
