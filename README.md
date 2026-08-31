@@ -37,7 +37,7 @@ http://localhost:9090
 
 # Postman test
 
-* 1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
+@ 1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
 
 <img width="1105" height="967" alt="image" src="https://github.com/user-attachments/assets/7e64b723-38df-4a5c-af89-1bb28b6e5446" />
 
