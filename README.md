@@ -124,6 +124,16 @@ Message Broker (Redis/RabbitMQ/Kafka): Acts as the high-throughput, distributed 
 
 Worker Instances: Dedicated background instances that consume jobs from the broker, execute the logic, and update the database status.
 
+[ Clients ] ---> [ Spring Boot API Layer ]
+                         |
+                 (1. Write State)
+                         v
+                 [ PostgreSQL DB ] 
+                         |
+              (2. Stream / Publish)
+                         v
+               [ Redis / RabbitMQ ] <--- (3. Pull / Process) --- [ Spring Boot Workers ]
+
 
 ### QUESTION B: Query Optimization for 50M Records
 
