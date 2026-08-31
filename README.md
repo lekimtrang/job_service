@@ -68,5 +68,8 @@ http://localhost:9090
 
 ## 5 Concurrency
 
+<img width="3402" height="270" alt="image" src="https://github.com/user-attachments/assets/4026f12f-0d65-47fa-979c-aa483797cb39" />
+
+
 <img width="2775" height="1632" alt="image" src="https://github.com/user-attachments/assets/ab740fcb-e6cc-46a2-b9b2-e145a2da2a59" />
 
