@@ -35,6 +35,14 @@ public class JobController {
 		return null;
     }
     
+    @GetMapping("/{id}")
+    public ResponseEntity<Job> getJobById(@PathVariable Long id) {
+        return ResponseEntity.ok(jobService.getJobById(id));
+    }
+    
+
+
+
 
     
     // preventing concurrent duplication
