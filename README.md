@@ -34,6 +34,26 @@ http://localhost:9090
 
 <img width="2922" height="1461" alt="image" src="https://github.com/user-attachments/assets/52f259d7-e61f-4ea5-8878-13f2d9dc0a1d" />
 
+# 📁 Project Structure
+src/main/java/proj/
+├── JobApplication.java
+├── config
+│   ├── RabbitMQConfig.java
+│   └── RedisConfig.java
+├── controller
+│   └── JobController.java
+├── dto
+│   └── JobRequest.java
+├── exception
+│   └── GlobalExceptionHandler.java
+├── model
+│   ├── Job.java
+│   └── JobStatus.java
+├── repository
+│   └── JobRepository.java
+└── service
+    └── JobService.java
+
 
 # Postman test
 
