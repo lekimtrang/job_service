@@ -32,9 +32,12 @@ mvn clean spring-boot:run
 
 http://localhost:9090
 
+<img width="2922" height="1461" alt="image" src="https://github.com/user-attachments/assets/52f259d7-e61f-4ea5-8878-13f2d9dc0a1d" />
+
+
 # Postman test
 
-1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
+* 1.	POST /api/jobs	- Create a new job	- Create a job with status PENDING and return the created job ID.
 
 <img width="1105" height="967" alt="image" src="https://github.com/user-attachments/assets/7e64b723-38df-4a5c-af89-1bb28b6e5446" />
 
