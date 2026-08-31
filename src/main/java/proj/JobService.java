@@ -62,22 +62,19 @@ public class JobService {
         }
     }
 
-    @Transactional
+    
     public void executeJobLogic(Long jobId) {
         Job job = jobRepository.findById(jobId).orElseThrow(() -> new IllegalArgumentException("Job not found"));
-
         // Protect against processing jobs that are finished or already running
         if (job.getStatus() == JobStatus.COMPLETED || job.getStatus() == JobStatus.FAILED || job.getStatus() == JobStatus.PROCESSING) {
         	return;
         }
-
         job.setStatus(JobStatus.PROCESSING);
         job.setUpdateddAt(LocalDateTime.now());
         jobRepository.saveAndFlush(job);
-
         try {
             // Rule validation: if payload contains "fail": true, fail execution
-            if (job.getPayload() != null && job.getPayload().contains("\"fail\": true")) {
+            if (job.getPayload() != null && job.getPayload().trim().contains("\"fail\":true")) {
                 throw new RuntimeException("Simulated job payload error failure constraint triggered.");
             }
 
