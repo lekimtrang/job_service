@@ -5,6 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -108,6 +110,15 @@ public class JobService {
         }
     }
   
+    public Page<Job> getJobs(JobStatus status, Pageable pageable) {
+        if (status != null) {
+            return jobRepository.findByStatus(status, pageable);
+        }
+        return jobRepository.findAll(pageable);
+    }
+
+
+    
     public Job getJobById(Long id) {
         return jobRepository.findById(id)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Job not found with id: " + id));
