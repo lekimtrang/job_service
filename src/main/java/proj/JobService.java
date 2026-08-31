@@ -1,6 +1,8 @@
 package proj;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
@@ -12,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class JobService {
 
 	@Autowired
@@ -24,17 +27,17 @@ public class JobService {
     private static final String LOCK_PREFIX = "lock:job:";
     private static final int MAX_RETRIES = 3;
 
-    public Job createJob(String type, String payload) {
+    @Transactional
+    public Long createJob(String type, String payload) {
         Job job = new Job();
         job.setType(type);
         job.setPayload(payload);
         job.setStatus(JobStatus.PENDING);
         job.setCreatedAt(LocalDateTime.now());
-        job.setUpdateddAt(LocalDateTime.now());
         Job savedJob = jobRepository.save(job);
         
         rabbitTemplate.convertAndSend(RabbitMQConfig.JOB_QUEUE, savedJob.getId().toString());
-        return savedJob;
+        return savedJob.getId();
     }
 
     public void processJob(Long jobId) {

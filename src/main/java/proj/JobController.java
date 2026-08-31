@@ -21,20 +21,21 @@ public class JobController {
     private JobService jobService;
 
     @PostMapping
-    public ResponseEntity<Job> createJob(@RequestBody Map<String, Object> rawPayload) {
+    public ResponseEntity<Map<String, Long>> createJob(@RequestBody Map<String, Object> rawPayload) {
     	String type = (String)rawPayload.get("type");
     	ObjectMapper mapper = new ObjectMapper();
     	String payload;
 		try {
 			payload = (String)mapper.writeValueAsString(rawPayload.get("payload"));
-			return ResponseEntity.ok(jobService.createJob(type, payload));
+			Long id = jobService.createJob(type, payload);
+			return ResponseEntity.ok(Map.of("id", id));
 		} catch (JsonProcessingException e) {
-			
 			e.printStackTrace();
 		}
 		return null;
-        
     }
+    
+
     
     // preventing concurrent duplication
     @PostMapping("/process")
