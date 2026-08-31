@@ -36,22 +36,39 @@ http://localhost:9090
 
 # 📁 Project Structure
 src/main/java/proj/
+
 ├── JobApplication.java
+
 ├── config
+
 │   ├── RabbitMQConfig.java
+
 │   └── RedisConfig.java
+
 ├── controller
+
 │   └── JobController.java
+
 ├── dto
+
 │   └── JobRequest.java
+
 ├── exception
+
 │   └── GlobalExceptionHandler.java
+
 ├── model
+
 │   ├── Job.java
+
 │   └── JobStatus.java
+
 ├── repository
+
 │   └── JobRepository.java
+
 └── service
+
     └── JobService.java
 
 
