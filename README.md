@@ -120,6 +120,9 @@ src/main/java/proj/
 
 ### QUESTION A: Scale-Up Strategy (1 Million Jobs/Day)
 
+Message Broker (Redis/RabbitMQ/Kafka): Acts as the high-throughput, distributed runtime queue to coordinate worker instances.
+
+Worker Instances: Dedicated background instances that consume jobs from the broker, execute the logic, and update the database status.
 
 
 ### QUESTION B: Query Optimization for 50M Records
