@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.security.InvalidParameterException;
 import java.time.Duration;
 import java.time.LocalDateTime;
 
@@ -112,8 +113,13 @@ public class JobService {
   
     public Page<Job> getJobs(JobStatus status, Pageable pageable) {
         if (status != null) {
-            return jobRepository.findByStatus(status, pageable);
+        	Page<Job> jobPage =  jobRepository.findByStatus(status, pageable);
+            if (jobPage.isEmpty()) {
+                throw new InvalidParameterException("Job status " + status.toString() + " not found in the database.");
+            }
+            return jobPage;
         }
+        
         return jobRepository.findAll(pageable);
     }
 
