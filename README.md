@@ -30,6 +30,7 @@ docker run --name my-redis -p 6379:6379 -d redis
 
 mvn clean spring-boot:run 
 
+# Postman test
 <img width="2211" height="1935" alt="image" src="https://github.com/user-attachments/assets/7e64b723-38df-4a5c-af89-1bb28b6e5446" />
 
 <img width="3153" height="1386" alt="image" src="https://github.com/user-attachments/assets/1e4a3023-cf15-4256-8224-c6c237ae10d9" />
