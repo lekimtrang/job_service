@@ -54,10 +54,17 @@ public class JobController {
 
 
     
+    // preventing concurrent 
+    @PostMapping("/processId")
+    public ResponseEntity<String> processJob(@RequestParam Long jobId) {
+        jobService.processPendingJob(jobId);
+        return ResponseEntity.ok("Processing jobId " + jobId +" completed or skipped via mutual exclusion.");
+    }
+    
     // preventing concurrent duplication
-    @PostMapping("/process")
-    public ResponseEntity<String> processJobConcurrently(@RequestParam Long jobId) {
-        jobService.processJob(jobId);
+    @PostMapping("/process")   
+    public ResponseEntity<String> processJobsConcurrently() {
+        jobService.processJobs();
         return ResponseEntity.ok("Processing sequence completed or skipped via mutual exclusion.");
     }
 }

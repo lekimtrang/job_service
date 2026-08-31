@@ -27,6 +27,6 @@ public class JobConsumer {
             // Log it clearly and return safely so the message gets ACKed and removed from the queue
             return; 
         }
-        jobService.processJob(Long.parseLong(jobId));
+        jobService.processPendingJob(Long.parseLong(jobId));
     }
 }

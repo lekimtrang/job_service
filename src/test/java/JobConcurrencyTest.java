@@ -43,7 +43,7 @@ public class JobConcurrencyTest {
             service.submit(() -> {
                 try {
                     latch.await(); // wait for the start signal
-                    jobService.processJob(savedJob.getId());
+                    jobService.processPendingJob(savedJob.getId());
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                 } finally {

@@ -16,6 +16,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.security.InvalidParameterException;
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -45,7 +46,7 @@ public class JobService {
         return savedJob.getId();
     }
 
-    public void processJob(Long jobId) {
+    public void processPendingJob(Long jobId) {
         String lockKey = LOCK_PREFIX + jobId;
         // Attempt to acquire distributed lock (Expires in 5 minutes to prevent deadlocks)
         Boolean acquired = redisTemplate.opsForValue().setIfAbsent(lockKey, "locked", Duration.ofMinutes(5));
@@ -62,6 +63,13 @@ public class JobService {
         }
     }
 
+    public void processJobs() {
+    	List<Job> pendingList = jobRepository.findByStatus(JobStatus.PENDING);
+
+        for(int i = 0 ; i < pendingList.size(); i++) {
+        	processPendingJob(pendingList.get(i).getId());
+        }
+    }
     
     public void executeJobLogic(Long jobId) {
         Job job = jobRepository.findById(jobId).orElseThrow(() -> new IllegalArgumentException("Job not found"));
