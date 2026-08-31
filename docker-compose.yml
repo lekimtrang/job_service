@@ -3,9 +3,9 @@ services:
     image: postgres:15-alpine
     container_name: job_postgres
     environment:
-      POSTGRES_DB: jobdb
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 12345678
     ports:
       - "5432:5432"
 
