@@ -26,9 +26,15 @@ postgresql-17.11-1
 
 Erlang 29.0.5
 
-docker run --name my-redis -p 6379:6379 -d redis
+Run redis via docker: docker run --name my-redis -p 6379:6379 -d redis
 
-mvn clean spring-boot:run 
+Ensure a PostgreSQL instance is running with a database named 'postgres'
+
+Ensure RabbitMQ Server has been already started
+
+Run the application using your IDE or via terminal: mvn clean spring-boot:run 
+
+Use an API client (like Postman or cURL) to verify the requests
 
 http://localhost:9090
 
@@ -111,6 +117,10 @@ src/main/java/proj/
 ### PENDING->PROCESSING->PENDING->PROCESSING->PENDING->PROCESSING->FAILED
 
 <img width="2775" height="1632" alt="image" src="https://github.com/user-attachments/assets/ab740fcb-e6cc-46a2-b9b2-e145a2da2a59" />
+
+### QUESTION A: Scale-Up Strategy (1 Million Jobs/Day)
+
+
 
 ### QUESTION B: Query Optimization for 50M Records
 
