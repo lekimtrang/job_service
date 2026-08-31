@@ -23,18 +23,19 @@ public class JobController {
     private JobService jobService;
 
     @PostMapping
-    public ResponseEntity<Map<String, Long>> createJob(@RequestBody Map<String, Object> rawPayload) {
-    	String type = (String)rawPayload.get("type");
+    public ResponseEntity<Map<String, Long>> createJob(@RequestBody JobRequest request) throws JsonProcessingException{// Map<String, Object> rawPayload) {
+    	//String type = (String)rawPayload.get("type");
     	ObjectMapper mapper = new ObjectMapper();
-    	String payload;
-		try {
-			payload = (String)mapper.writeValueAsString(rawPayload.get("payload"));
-			Long id = jobService.createJob(type, payload);
+		//try {
+			//String payload = (String)mapper.writeValueAsString(rawPayload.get("payload"));
+			//Long id = jobService.createJob(type, payload);
+    		String payload = (String)mapper.writeValueAsString(request.getPayload());
+			Long id = jobService.createJob(request.getType(), payload);
 			return ResponseEntity.ok(Map.of("id", id));
-		} catch (JsonProcessingException e) {
-			e.printStackTrace();
-		}
-		return null;
+		//} catch (JsonProcessingException e) {
+			//e.printStackTrace();
+		//}
+		//return null;
     }
     
     @GetMapping("/{id}")

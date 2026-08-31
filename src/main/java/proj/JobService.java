@@ -91,7 +91,8 @@ public class JobService {
             handleJobFailure(job, e.getMessage());
         }
     }
-
+    
+    
     private void handleJobFailure(Job job, String errorMsg) {
         int currentRetries = job.getRetryCount() + 1;
         job.setRetryCount(currentRetries);
