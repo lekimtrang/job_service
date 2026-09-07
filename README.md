@@ -154,12 +154,16 @@ Partial Functional Indexes: Because active states like PENDING and PROCESSING co
 CREATE INDEX idx_jobs_pending_partial ON jobs (created_at DESC) 
 WHERE status IN ('PENDING', 'PROCESSING');
 
-Modify query string
+Composite Index Strategy: Create a targeted composite index covering the query filtering and ordering pattern:
+
+CREATE INDEX idx_jobs_status_created ON jobs(status, created_at DESC);
+
+Modify query string - Keyset Pagination
 
 SELECT * FROM jobs 
 WHERE status = 'PENDING' AND id < :last_seen_id 
 ORDER BY id DESC LIMIT 20;
 
-
+Track the unique primary key boundary marker from the previous view panel to achieve constant-time lookup performance
 
 
