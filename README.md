@@ -166,4 +166,4 @@ ORDER BY id DESC LIMIT 20;
 
 Track the unique primary key boundary marker from the previous view panel to achieve constant-time lookup performance
 
-
+Table Partitioning: Horizontally slice the table by status or time ranges (e.g., active partitions) so query processing is bounded only to recent live rows.
