@@ -55,8 +55,8 @@ public class JobService {
 
     public void processPendingJob(Long jobId) {
         String lockKey = LOCK_PREFIX + jobId;
-        // Attempt to acquire distributed lock (Expires in 5 minutes to prevent deadlocks)
-        Boolean acquired = redisTemplate.opsForValue().setIfAbsent(lockKey, "locked", Duration.ofMinutes(5));
+        // Attempt to acquire distributed lock (Expires in 1 minutes to prevent deadlocks)
+        Boolean acquired = redisTemplate.opsForValue().setIfAbsent(lockKey, "locked", Duration.ofMinutes(1));
 
         if (Boolean.FALSE.equals(acquired)) {
             // Already being processed elsewhere concurrently. Abort.
@@ -79,7 +79,7 @@ public class JobService {
     }
     
     public void executeJobLogic(Long jobId) {
-        Job job = jobRepository.findById(jobId).orElseThrow(() -> new IllegalArgumentException("Job not found"));
+        Job job = jobRepository.findById(jobId).orElseThrow(() -> new IllegalArgumentException("Pending job not found"));
         // Protect against processing jobs that are finished or already running
         if (job.getStatus() == JobStatus.COMPLETED || job.getStatus() == JobStatus.FAILED || job.getStatus() == JobStatus.PROCESSING) {
         	return;
